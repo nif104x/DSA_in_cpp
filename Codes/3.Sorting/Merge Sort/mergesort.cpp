@@ -62,12 +62,20 @@ void merge(int arr[], int start, int mid, int end)
 
 int main() {
     int arr[]= {33, 3, 7, 19, -36, 217,  157, 568, -13560, 6};
-    mergesort(arr, 0, 9);
-
+    
+    cout<<"Original Array: ";
     for (int i = 0; i < 10; i++)
     {
         cout<<arr[i]<<" ";
     }
     
+    mergesort(arr, 0, 9);
+    
+    cout<<endl;
+    cout<<"Sorted Array: ";
+    for (int i = 0; i < 10; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
     return 0;
 }
