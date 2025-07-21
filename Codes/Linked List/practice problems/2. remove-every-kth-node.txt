@@ -1,0 +1,30 @@
+//Question Link: https://www.geeksforgeeks.org/problems/remove-every-kth-node
+
+class Solution {
+  public:
+    Node* deleteK(Node* head, int k) {
+        // edge case 1: if k = 1
+        if(k == 1){
+            return NULL;
+        }
+        
+        int count = 1;
+        Node *curr = head, *prev = NULL;
+        while(curr){
+            // case: k == count> delete Node
+            if(k==count){
+                prev->next = curr->next;
+                delete curr;
+                curr = prev->next;
+                count = 1;
+            }
+            // k!=count>skip
+            else{
+                prev = curr;
+                curr = curr->next;
+                count++;
+            }
+        }
+        return head;
+    }
+};

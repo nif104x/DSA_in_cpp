@@ -1,0 +1,51 @@
+https://leetcode.com/problems/palindrome-linked-list/description/
+
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        // handling if only 1 node is present: as The number of nodes in the list is in the range [1, 105].
+        if(head->next == NULL)
+        return 1;
+
+        int count = 0;
+        ListNode *temp = head;
+        while(temp){
+            count++;
+            temp = temp->next;
+        }
+
+        //deviding the linked list in to two parts 6(3,3) 5(2,3)
+        count/=2;
+        ListNode *curr = head, *prev = NULL;
+        while(count--){
+            prev = curr;
+            curr = curr->next;
+        }
+        prev->next = NULL; // 1st part end.next = NULL
+
+        // Now have two devide part (head to prev) and (curr to end)
+        // reversing the 2nd part:
+        ListNode *fut = NULL;
+        prev = NULL; 
+        while(curr){
+            fut = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = fut;
+        }
+        // now prev is pointing the 2nd list
+
+        // defining the two heads:
+        ListNode *head1 = head, *head2 = prev;
+        while(head1){
+            if(head1->val!=head2->val)
+            return 0;
+
+            head1 = head1->next;
+            head2 = head2->next;
+        }
+
+        return 1;
+    }
+};
